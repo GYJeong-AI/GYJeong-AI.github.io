@@ -1,48 +1,1046 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Pure Lab의 앱 소개와 문의 안내입니다.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4f4f1" />
+  <meta name="color-scheme" content="light" />
+
   <title>Pure Lab</title>
+  <meta
+    name="description"
+    content="Pure Lab is an independent one-person app studio using GPT as a development tool."
+  />
+
   <style>
-    /* CSS는 이 영역에 작성하세요. 외부 파일 없이 이 HTML 안에서 관리합니다. */
+    :root {
+      --bg: #f4f4f1;
+      --paper: #fbfbf8;
+      --text: #101010;
+      --muted: #71716c;
+      --line: rgba(16, 16, 16, 0.11);
+      --line-strong: rgba(16, 16, 16, 0.18);
+      --max: 1180px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
     * { box-sizing: border-box; }
-    body { margin: 0; padding: 24px; font-family: system-ui, sans-serif; line-height: 1.6; }
-    main { max-width: 960px; margin: 0 auto; }
-    section { margin-block: 32px; }
-    img, video { max-width: 100%; height: auto; }
-    a { overflow-wrap: anywhere; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Text",
+        "SF Pro Display",
+        "Apple SD Gothic Neo",
+        "Noto Sans KR",
+        "Noto Sans JP",
+        "Segoe UI",
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, select { font: inherit; }
+
+    .shell {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family:
+        "SFMono-Regular",
+        "Cascadia Code",
+        "Roboto Mono",
+        "Noto Sans Mono",
+        monospace;
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(16,16,16,.055);
+      background: rgba(244,244,241,.84);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 16px;
+      font-weight: 740;
+      letter-spacing: -.03em;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tiny-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+
+    .tiny-label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7d7d77;
+    }
+
+    .language {
+      position: relative;
+      width: 118px;
+      flex: 0 0 118px;
+    }
+
+    .language select {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+      height: 38px;
+      padding: 0 30px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255,255,255,.70);
+      font-size: 13px;
+      font-weight: 630;
+      line-height: 38px;
+      text-align: center;
+      text-align-last: center;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .language::after {
+      content: "⌄";
+      position: absolute;
+      right: 12px;
+      top: 48%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 94px 0 76px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .94fr) minmax(420px, 1.06fr);
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 680;
+      letter-spacing: .055em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 690px;
+      font-size: clamp(52px, 7.2vw, 88px);
+      line-height: .99;
+      letter-spacing: -.064em;
+      font-weight: 760;
+    }
+
+    .hero-copy {
+      max-width: 520px;
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.72;
+      letter-spacing: -.012em;
+    }
+
+    .hero-meta {
+      margin-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .pill {
+      min-height: 32px;
+      padding: 0 11px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.46);
+      color: #5f5f5a;
+      font-size: 12px;
+      font-weight: 640;
+    }
+
+    /* Main visual */
+    .visual {
+      --pastel-a-x: -34px;
+      --pastel-a-y: -22px;
+      --pastel-a-scale: 1.00;
+      --pastel-a-opacity: .72;
+      --pastel-b-x: 26px;
+      --pastel-b-y: 24px;
+      --pastel-b-scale: 1.02;
+      --pastel-b-opacity: .64;
+      min-height: 520px;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border: 1px solid rgba(16,16,16,.085);
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(249,249,246,.92)),
+        #fafaf8;
+      box-shadow:
+        0 28px 80px rgba(40,40,35,.07),
+        0 12px 46px rgba(163,154,255,.08),
+        inset 0 1px 0 rgba(255,255,255,.96);
+    }
+
+    .visual::before,
+    .visual::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .visual::before {
+      width: 88%;
+      height: 88%;
+      left: -22%;
+      top: -26%;
+      z-index: -2;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 36%,
+          rgba(255,142,196,.78) 0%,
+          rgba(255,189,118,.62) 22%,
+          rgba(167,226,176,.52) 44%,
+          rgba(142,193,255,.68) 66%,
+          rgba(190,153,255,.58) 82%,
+          transparent 100%);
+      filter: blur(34px);
+      transform:
+        translate3d(var(--pastel-a-x), var(--pastel-a-y), 0)
+        scale(var(--pastel-a-scale));
+      opacity: var(--pastel-a-opacity);
+      will-change: transform, opacity;
+    }
+
+    .visual::after {
+      width: 78%;
+      height: 82%;
+      right: -22%;
+      bottom: -28%;
+      z-index: -2;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 55% 48%,
+          rgba(128,211,255,.68) 0%,
+          rgba(177,159,255,.58) 25%,
+          rgba(255,159,206,.54) 48%,
+          rgba(255,205,125,.48) 72%,
+          transparent 100%);
+      filter: blur(38px);
+      transform:
+        translate3d(var(--pastel-b-x), var(--pastel-b-y), 0)
+        scale(var(--pastel-b-scale));
+      opacity: var(--pastel-b-opacity);
+      will-change: transform, opacity;
+    }
+
+    .visual-top {
+      height: 54px;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(16,16,16,.075);
+      color: rgba(16,16,16,.46);
+      background: rgba(255,255,255,.28);
+      font-size: 11px;
+    }
+
+    .traffic {
+      display: flex;
+      gap: 7px;
+    }
+
+    .traffic span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(16,16,16,.20);
+    }
+
+    .visual-body {
+      position: relative;
+      height: 466px;
+      padding: 30px;
+    }
+
+    .code {
+      margin: 0;
+      color: rgba(16,16,16,.62);
+      font-size: 12px;
+      line-height: 1.85;
+      white-space: pre-wrap;
+      user-select: none;
+    }
+
+    .code .dim { color: rgba(16,16,16,.28); }
+    .code .soft { color: rgba(16,16,16,.46); }
+    .code .strong { color: rgba(16,16,16,.84); }
+
+    .mini-phone {
+      width: 188px;
+      height: 350px;
+      position: absolute;
+      right: 34px;
+      bottom: 28px;
+      border: 1px solid rgba(16,16,16,.10);
+      border-radius: 32px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.54)),
+        rgba(255,255,255,.70);
+      box-shadow:
+        0 24px 58px rgba(45,45,40,.12),
+        inset 0 1px 0 rgba(255,255,255,.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 18px 15px;
+      transform: rotate(4deg);
+    }
+
+    .phone-notch {
+      width: 58px;
+      height: 16px;
+      margin: 0 auto 25px;
+      border-radius: 999px;
+      background: rgba(16,16,16,.72);
+    }
+
+    .ui-line {
+      height: 7px;
+      margin-bottom: 9px;
+      border-radius: 99px;
+      background: rgba(16,16,16,.10);
+    }
+
+    .ui-line.lg {
+      width: 74%;
+      height: 12px;
+      background: rgba(16,16,16,.68);
+    }
+
+    .ui-line.md { width: 52%; }
+    .ui-line.sm { width: 34%; }
+
+    .ui-card {
+      margin-top: 26px;
+      height: 94px;
+      border: 1px solid rgba(16,16,16,.075);
+      border-radius: 18px;
+      background: rgba(255,255,255,.54);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+    }
+
+    .ui-card + .ui-card {
+      margin-top: 10px;
+      height: 72px;
+    }
+
+    .gpt-tag {
+      position: absolute;
+      left: 30px;
+      bottom: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 11px;
+      border: 1px solid rgba(16,16,16,.09);
+      border-radius: 999px;
+      color: rgba(16,16,16,.58);
+      background: rgba(255,255,255,.54);
+      box-shadow: 0 8px 26px rgba(42,42,37,.055);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 11px;
+      letter-spacing: .02em;
+    }
+
+    .gpt-tag::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(16,16,16,.50);
+    }
+
+    /* Statement */
+    .statement {
+      padding: 80px 0 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    .statement-grid {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 64px;
+    }
+
+    .section-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 680;
+      letter-spacing: .055em;
+      text-transform: uppercase;
+    }
+
+    .statement h2 {
+      margin: 0;
+      max-width: 820px;
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -.052em;
+      font-weight: 720;
+    }
+
+    /* Process */
+    .process {
+      padding: 72px 0 96px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .process-item {
+      min-height: 248px;
+      padding: 26px 28px 28px 0;
+    }
+
+    .process-item + .process-item {
+      padding-left: 28px;
+      border-left: 1px solid var(--line);
+    }
+
+    .process-num {
+      color: #9a9a94;
+      font-size: 11px;
+      letter-spacing: .05em;
+    }
+
+    .process-item h3 {
+      margin: 86px 0 0;
+      font-size: 22px;
+      letter-spacing: -.03em;
+      font-weight: 690;
+    }
+
+    .process-item p {
+      margin: 10px 0 0;
+      max-width: 270px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* Note */
+    .note {
+      padding: 0 0 90px;
+    }
+
+    .note-row {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 64px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .note-copy {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 26px 0 34px;
+      border-top: 1px solid rgba(16,16,16,.07);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: #868680;
+      font-size: 12px;
+    }
+
+    .footer strong {
+      color: #555550;
+      font-weight: 690;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .visual {
+        max-width: 760px;
+      }
+
+      .statement-grid,
+      .note-row {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .header-inner {
+        height: 62px;
+      }
+
+      .tiny-label {
+        display: none;
+      }
+
+      .hero {
+        padding: 72px 0 64px;
+      }
+
+      .hero-grid {
+        gap: 46px;
+      }
+
+      .hero h1 {
+        font-size: clamp(50px, 16vw, 72px);
+      }
+
+      .hero-copy {
+        font-size: 16px;
+      }
+
+      .visual {
+        min-height: 430px;
+        border-radius: 22px;
+      }
+
+      .visual-body {
+        height: 376px;
+        padding: 22px;
+      }
+
+      .code {
+        font-size: 10.5px;
+      }
+
+      .mini-phone {
+        width: 152px;
+        height: 290px;
+        right: 20px;
+        bottom: 22px;
+        border-radius: 26px;
+      }
+
+      .gpt-tag {
+        left: 20px;
+        bottom: 20px;
+      }
+
+      .statement {
+        padding-top: 62px;
+      }
+
+      .process {
+        padding: 58px 0 72px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-item {
+        min-height: 0;
+        padding: 24px 0 28px;
+      }
+
+      .process-item + .process-item {
+        padding-left: 0;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .process-item h3 {
+        margin-top: 46px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .001ms !important;
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+    }
   </style>
 </head>
+
 <body>
-  <main>
-    <!-- HTML 디자인과 내용을 이 영역에서 자유롭게 수정하세요. -->
-    <header>
-      <h1>Pure Lab</h1>
-      <p>앱 소개 및 문의</p>
-    </header>
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top">Pure Lab</a>
 
-    <section id="apps" aria-labelledby="apps-title">
-      <h2 id="apps-title">앱</h2>
-      <article id="peek-chat">
-        <h3>Peek Chat</h3>
-        <p>Android 알림에 포함된 메시지를 기기 내에서 확인하는 앱입니다.</p>
-      </article>
-      <!-- 다른 앱 소개는 이 섹션에 추가하세요. -->
+      <div class="header-right">
+        <span class="tiny-label mono" data-i18n="header.label">independent app studio</span>
+
+        <label class="language">
+          <span class="sr-only" data-i18n="language.label">Language</span>
+          <select id="languageSelect" aria-label="Language">
+            <option value="system" data-i18n-option="language.system">System</option>
+            <option value="ko">한국어</option>
+            <option value="ja">日本語</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="hero-kicker" data-i18n="hero.kicker">One person + GPT</div>
+
+          <h1 data-i18n="hero.title">
+            Small studio.<br>
+            Useful apps.
+          </h1>
+
+          <p class="hero-copy" data-i18n="hero.copy">
+            Pure Lab is a one-person app studio. GPT is used as a practical development tool from planning to code.
+          </p>
+
+          <div class="hero-meta">
+            <span class="pill" data-i18n="hero.pill1">Independent</span>
+            <span class="pill" data-i18n="hero.pill2">GPT-assisted</span>
+            <span class="pill" data-i18n="hero.pill3">Mobile apps</span>
+          </div>
+        </div>
+
+        <div class="visual" id="visual" aria-hidden="true">
+          <div class="visual-top mono">
+            <div class="traffic">
+              <span></span><span></span><span></span>
+            </div>
+            <div>pure-lab / build</div>
+          </div>
+
+          <div class="visual-body">
+            <pre class="code mono"><span class="dim">// idea → prototype → app</span>
+
+<span class="strong">const</span> studio = {
+  developer: <span class="soft">1</span>,
+  tools: [
+    <span class="soft">"GPT"</span>,
+    <span class="soft">"code"</span>,
+    <span class="soft">"design"</span>
+  ]
+}
+
+<span class="dim">// keep it simple</span>
+<span class="strong">build</span>(usefulThings)</pre>
+
+            <div class="mini-phone">
+              <div class="phone-notch"></div>
+              <div class="ui-line lg"></div>
+              <div class="ui-line md"></div>
+              <div class="ui-line sm"></div>
+              <div class="ui-card"></div>
+              <div class="ui-card"></div>
+            </div>
+
+            <div class="gpt-tag mono">GPT-assisted development</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">문의</h2>
-      <a href="mailto:gyjeongai@gmail.com">gyjeongai@gmail.com</a>
+    <section class="statement">
+      <div class="shell statement-grid">
+        <div class="section-label" data-i18n="statement.label">Pure Lab</div>
+
+        <h2 data-i18n="statement.title">
+          Build only what needs to exist.
+        </h2>
+      </div>
     </section>
 
-    <footer>
-      <a href="./app-ads.txt">광고 판매자 정보 (app-ads.txt)</a>
-    </footer>
+    <section class="process">
+      <div class="shell">
+        <div class="process-grid">
+          <article class="process-item">
+            <div class="process-num mono">01</div>
+            <h3 data-i18n="process.p1.title">Think</h3>
+            <p data-i18n="process.p1.copy">
+              Start with one clear problem.
+            </p>
+          </article>
+
+          <article class="process-item">
+            <div class="process-num mono">02</div>
+            <h3 data-i18n="process.p2.title">Build</h3>
+            <p data-i18n="process.p2.copy">
+              Use GPT and code to move from idea to working product.
+            </p>
+          </article>
+
+          <article class="process-item">
+            <div class="process-num mono">03</div>
+            <h3 data-i18n="process.p3.title">Refine</h3>
+            <p data-i18n="process.p3.copy">
+              Remove friction, keep the useful parts.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="note">
+      <div class="shell note-row">
+        <div class="section-label" data-i18n="note.label">About</div>
+        <p class="note-copy" data-i18n="note.copy">
+          Pure Lab is an independent studio. GPT is used as a development tool; Pure Lab is not affiliated with OpenAI.
+        </p>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <strong>Pure Lab</strong>
+      <div>© <span id="year"></span></div>
+    </div>
+  </footer>
+
   <script>
-    // 필요한 JavaScript는 이 영역에 작성하세요.
+    const translations = {
+      en: {
+        "page.title": "Pure Lab",
+        "page.description": "Pure Lab is an independent one-person app studio using GPT as a development tool.",
+        "header.label": "independent app studio",
+        "language.label": "Language",
+        "language.system": "System",
+
+        "hero.kicker": "One person + GPT",
+        "hero.title": "Small studio.<br>Useful apps.",
+        "hero.copy": "Pure Lab is a one-person app studio. GPT is used as a practical development tool from planning to code.",
+        "hero.pill1": "Independent",
+        "hero.pill2": "GPT-assisted",
+        "hero.pill3": "Mobile apps",
+
+        "statement.label": "Pure Lab",
+        "statement.title": "Build only what needs to exist.",
+
+        "process.p1.title": "Think",
+        "process.p1.copy": "Start with one clear problem.",
+        "process.p2.title": "Build",
+        "process.p2.copy": "Use GPT and code to move from idea to working product.",
+        "process.p3.title": "Refine",
+        "process.p3.copy": "Remove friction, keep the useful parts.",
+
+        "note.label": "About",
+        "note.copy": "Pure Lab is an independent studio. GPT is used as a development tool; Pure Lab is not affiliated with OpenAI."
+      },
+
+      ko: {
+        "page.title": "Pure Lab",
+        "page.description": "Pure Lab은 GPT를 개발 도구로 활용하는 1인 앱 개발 스튜디오입니다.",
+        "header.label": "independent app studio",
+        "language.label": "언어",
+        "language.system": "시스템",
+
+        "hero.kicker": "1인 개발자 + GPT",
+        "hero.title": "작은 스튜디오.<br>쓸모 있는 앱.",
+        "hero.copy": "Pure Lab은 1인 앱 개발 스튜디오입니다. 기획부터 코드까지 GPT를 실용적인 개발 도구로 활용합니다.",
+        "hero.pill1": "1인 개발",
+        "hero.pill2": "GPT 활용",
+        "hero.pill3": "모바일 앱",
+
+        "statement.label": "Pure Lab",
+        "statement.title": "필요한 것을, 필요한 만큼 만듭니다.",
+
+        "process.p1.title": "생각하기",
+        "process.p1.copy": "하나의 분명한 문제에서 시작합니다.",
+        "process.p2.title": "만들기",
+        "process.p2.copy": "GPT와 코드를 활용해 아이디어를 실제 제품으로 만듭니다.",
+        "process.p3.title": "다듬기",
+        "process.p3.copy": "불편한 부분은 줄이고 필요한 기능은 남깁니다.",
+
+        "note.label": "안내",
+        "note.copy": "Pure Lab은 독립적인 1인 개발 스튜디오입니다. GPT는 개발 도구로 활용하며, OpenAI와 제휴 또는 소속 관계가 없습니다."
+      },
+
+      ja: {
+        "page.title": "Pure Lab",
+        "page.description": "Pure Labは、GPTを開発ツールとして活用する個人アプリ開発スタジオです。",
+        "header.label": "independent app studio",
+        "language.label": "言語",
+        "language.system": "システム",
+
+        "hero.kicker": "1人の開発者 + GPT",
+        "hero.title": "小さなスタジオ。<br>役に立つアプリ。",
+        "hero.copy": "Pure Labは個人で運営するアプリ開発スタジオです。企画からコードまで、GPTを実用的な開発ツールとして活用しています。",
+        "hero.pill1": "個人開発",
+        "hero.pill2": "GPT活用",
+        "hero.pill3": "モバイルアプリ",
+
+        "statement.label": "Pure Lab",
+        "statement.title": "必要なものを、必要なだけつくる。",
+
+        "process.p1.title": "考える",
+        "process.p1.copy": "ひとつの明確な課題から始めます。",
+        "process.p2.title": "つくる",
+        "process.p2.copy": "GPTとコードを使い、アイデアを実際のプロダクトにします。",
+        "process.p3.title": "整える",
+        "process.p3.copy": "無駄を減らし、必要な部分を残します。",
+
+        "note.label": "About",
+        "note.copy": "Pure Labは独立した個人開発スタジオです。GPTは開発ツールとして利用しており、OpenAIとの提携・所属関係はありません。"
+      }
+    };
+
+    const languageSelect = document.getElementById("languageSelect");
+    const year = document.getElementById("year");
+    const visual = document.getElementById("visual");
+
+    year.textContent = new Date().getFullYear();
+
+    function getSystemLanguage() {
+      const list = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || "en"];
+
+      for (const item of list) {
+        const lang = String(item).toLowerCase();
+        if (lang.startsWith("ko")) return "ko";
+        if (lang.startsWith("ja")) return "ja";
+        if (lang.startsWith("en")) return "en";
+      }
+
+      return "en";
+    }
+
+    function resolveLanguage(value) {
+      return value === "system" ? getSystemLanguage() : value;
+    }
+
+    function applyLanguage(selection) {
+      const lang = resolveLanguage(selection);
+      const dict = translations[lang] || translations.en;
+
+      document.documentElement.lang = lang;
+      document.title = dict["page.title"];
+
+      const description = document.querySelector('meta[name="description"]');
+      if (description) {
+        description.setAttribute("content", dict["page.description"]);
+      }
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-option]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-option");
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+
+      languageSelect.setAttribute("aria-label", dict["language.label"]);
+      languageSelect.value = selection;
+    }
+
+    let saved = null;
+
+    try {
+      saved = localStorage.getItem("purelab-language");
+    } catch (error) {
+      saved = null;
+    }
+
+    const initial = ["system", "ko", "ja", "en"].includes(saved) ? saved : "system";
+    applyLanguage(initial);
+
+    languageSelect.addEventListener("change", (event) => {
+      const value = event.target.value;
+
+      try {
+        localStorage.setItem("purelab-language", value);
+      } catch (error) {
+        // Some embedded previews block storage. Language switching still works.
+      }
+
+      applyLanguage(value);
+    });
+
+    // Scroll-reactive pastel glow:
+    // the two color fields drift in opposite directions and become
+    // slightly brighter around the center of the viewport.
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
+
+    function updatePastelOnScroll() {
+      if (!visual) return;
+
+      if (prefersReducedMotion.matches) {
+        visual.style.setProperty("--pastel-a-x", "-12px");
+        visual.style.setProperty("--pastel-a-y", "-8px");
+        visual.style.setProperty("--pastel-a-scale", "1.02");
+        visual.style.setProperty("--pastel-a-opacity", ".82");
+        visual.style.setProperty("--pastel-b-x", "10px");
+        visual.style.setProperty("--pastel-b-y", "12px");
+        visual.style.setProperty("--pastel-b-scale", "1.06");
+        visual.style.setProperty("--pastel-b-opacity", ".74");
+        return;
+      }
+
+      const rect = visual.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+
+      // 0 when entering from below, 1 after leaving above.
+      const progress = clamp((vh - rect.top) / (vh + rect.height), 0, 1);
+
+      // Strongest around the middle of the scroll-through.
+      const focus = Math.sin(progress * Math.PI);
+      const ease = progress * progress * (3 - 2 * progress);
+
+      const ax = -52 + ease * 126;
+      const ay = -34 + ease * 86;
+      const bx = 48 - ease * 118;
+      const by = 38 - ease * 82;
+
+      const aScale = 1.00 + focus * 0.16;
+      const bScale = 1.01 + focus * 0.15;
+
+      const aOpacity = 0.54 + focus * 0.40;
+      const bOpacity = 0.48 + focus * 0.38;
+
+      visual.style.setProperty("--pastel-a-x", ax.toFixed(1) + "px");
+      visual.style.setProperty("--pastel-a-y", ay.toFixed(1) + "px");
+      visual.style.setProperty("--pastel-a-scale", aScale.toFixed(3));
+      visual.style.setProperty("--pastel-a-opacity", aOpacity.toFixed(3));
+
+      visual.style.setProperty("--pastel-b-x", bx.toFixed(1) + "px");
+      visual.style.setProperty("--pastel-b-y", by.toFixed(1) + "px");
+      visual.style.setProperty("--pastel-b-scale", bScale.toFixed(3));
+      visual.style.setProperty("--pastel-b-opacity", bOpacity.toFixed(3));
+
+    }
+
+    let pastelTicking = false;
+
+    function requestPastelUpdate() {
+      if (pastelTicking) return;
+
+      pastelTicking = true;
+      requestAnimationFrame(() => {
+        updatePastelOnScroll();
+        pastelTicking = false;
+      });
+    }
+
+    window.addEventListener("scroll", requestPastelUpdate, { passive: true });
+    window.addEventListener("resize", requestPastelUpdate, { passive: true });
+
+    if (prefersReducedMotion.addEventListener) {
+      prefersReducedMotion.addEventListener("change", requestPastelUpdate);
+    }
+
+    updatePastelOnScroll();
+
   </script>
 </body>
 </html>
