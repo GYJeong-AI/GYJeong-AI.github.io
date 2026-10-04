@@ -35,11 +35,11 @@
   1. 아래 SITE_CONFIG의 github, email에 실제 주소를 입력하세요.
      *.github.io 배포 시 GitHub 프로필은 호스트 이름에서 자동 연결됩니다.
   2. projects의 url에 실제 배포/저장소 주소를 입력하면 상세 창에 링크가 나타납니다.
-     비워 두면 외부로 이동하지 않고 이 파일에 포함된 콘셉트 데모만 실행됩니다.
+     비워 두면 외부로 이동하지 않고 프로젝트 미리보기를 보여 줍니다.
   3. 이 파일을 index.html로 저장해 GitHub Pages의 게시 폴더에 올리세요.
-  외부 폰트, 라이브러리, 이미지, 추적기 및 네트워크 요청이 없는 독립형 파일입니다.
+  외부 폰트, 라이브러리와 추적기는 사용하지 않습니다. MotionSports 이미지는 같은 사이트에서 불러옵니다.
   Aurora previews are embedded copies of the public repository screenshots (0.2.2-beta.1).
-  MotionSports uses the original browser concept preview, not a Unity build or phone connection.
+  MotionSports shows the two approved, unretouched Unity gameplay captures.
 -->
 <script>
 const SITE_CONFIG = {
@@ -152,6 +152,22 @@ html:lang(en) .hero-intro{max-width:510px}
 .aurora-detail{padding:24px;display:grid;gap:24px;background:var(--paper);color:var(--muted)}
 .aurora-detail .aurora-shot figcaption{font-size:10px;margin-bottom:10px}.aurora-detail .aurora-shot img{box-shadow:var(--shadow)}
 @media(max-width:720px){.aurora-preview{gap:26px;max-width:460px}.aurora-detail{padding:16px;gap:20px}}
+
+/* MotionSports: preserve both approved image compositions, without cropping or tilt. */
+.stage-motion{padding:48px 22px 18px}
+.motion-preview{width:min(100%,440px);height:100%;display:grid;grid-template-rows:minmax(0,1fr) 60px;gap:12px;color:#365660}
+.motion-shot{margin:0;min-width:0}.motion-shot img{display:block;max-width:100%;height:auto;object-fit:contain}
+.motion-preview .motion-shot figcaption{display:none}
+.motion-main{display:grid;place-items:center;min-height:0;padding:5px;border:1px solid #ffffff80;border-radius:12px;background:#14242c;box-shadow:0 14px 26px -20px #193c50aa}
+.motion-preview .motion-main img{width:100%;height:100%;min-height:0;object-fit:contain}
+.motion-secondary{display:flex;align-items:center;gap:13px;min-width:0}
+.motion-preview .motion-tennis img{width:72px;height:60px;object-fit:contain}
+.motion-preview-label{font-size:8px;line-height:1.8;letter-spacing:.13em}
+.motion-detail{display:grid;gap:24px}.motion-detail .motion-shot{padding:12px;border:1px solid var(--line);border-radius:15px;background:var(--paper)}
+.motion-detail .motion-shot img{width:100%;height:auto;object-fit:contain;margin-inline:auto}
+.motion-detail .motion-tennis img{max-width:600px}
+.motion-detail .motion-shot figcaption{font:9px/1.7 Consolas,monospace;letter-spacing:.12em;color:var(--muted);margin:11px 1px 0}
+@media(max-width:720px){.stage-motion{padding:47px 20px 18px}.motion-detail{gap:18px}.motion-detail .motion-shot{padding:9px}}
 </style>
 </head>
 <body>
@@ -241,16 +257,16 @@ html:lang(en) .hero-intro{max-width:510px}
      </div>
      <div class="project-copy"><div class="project-topline"><span class="project-number mono">PROJECT / 01</span><span class="project-category">FIREFOX THEME · BETA</span></div><h3>Aurora Theme for Firefox</h3><p>Linux의 Firefox를 위한 라이트·다크 CSS 테마.</p></div><span class="project-arrow"><svg class="icon"><use href="#i-arrow"/></svg></span><button class="project-open" data-open="aurora" aria-label="Aurora Theme for Firefox 소개와 실제 화면 열기"></button>
     </article>
-    <article class="project-card" data-category="interactive" data-reveal style="--delay:.08s">
+    <article class="project-card" data-category="interactive" data-static-preview data-reveal style="--delay:.08s">
      <div class="project-stage stage-motion" aria-hidden="true"><div class="stage-grid"></div><span class="stage-label mono">MOVE. PLAY. REPEAT.</span><span class="stage-corner mono">02 / PLAY</span>
-      <div class="stage-art race-preview"><svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sea" x2="0" y2="1"><stop stop-color="#8dc6d2"/><stop offset="1" stop-color="#b2dce1"/></linearGradient><linearGradient id="land" x2="1" y2="1"><stop stop-color="#c6d5a3"/><stop offset="1" stop-color="#90b987"/></linearGradient><linearGradient id="road" x2="0" y2="1"><stop stop-color="#98a8ae"/><stop offset="1" stop-color="#80949d"/></linearGradient></defs><path fill="url(#sea)" d="M0 0h400v260H0z"/><path fill="#d5dfb8" d="M0 59Q84 13 155 37t134 40q72-13 111 28v155H0Z"/><path fill="url(#land)" d="M0 76Q88 22 155 49t134 40q72-13 111 28v143H0Z"/><path d="M-18 200q90-26 143 2t119 7q101-31 80-88-7-51-78-48t-60 61q9 37-28 50" fill="none" stroke="#f4efd9" stroke-width="76"/><path d="M-18 200q90-26 143 2t119 7q101-31 80-88-7-51-78-48t-60 61q9 37-28 50" fill="none" stroke="#cba89a" stroke-width="65" stroke-dasharray="8 10"/><path d="M-18 200q90-26 143 2t119 7q101-31 80-88-7-51-78-48t-60 61q9 37-28 50" fill="none" stroke="url(#road)" stroke-width="55"/><path d="M-18 200q90-26 143 2t119 7q101-31 80-88-7-51-78-48t-60 61q9 37-28 50" fill="none" stroke="#e3e8e2" stroke-width="2" stroke-dasharray="11 13" opacity=".75"/><g fill="#89ab77"><ellipse cx="46" cy="131" rx="24" ry="10" opacity=".3"/><ellipse cx="351" cy="47" rx="21" ry="9" opacity=".3"/></g><g><path d="m47 130 4-43" stroke="#a49774" stroke-width="5"/><path d="M51 90q-32-27-42-5 28-8 42 5m0 0q-3-38 21-30-16 11-21 30m0 0q33-20 36 7-18-15-36-7" fill="#759d67"/><path d="m352 46 3-31" stroke="#a49774" stroke-width="4"/><path d="M355 19q-24-22-33-3 25-7 33 3m0 0q3-29 21-21-15 7-21 21m0 0q22-13 26 8-15-12-26-8" fill="#789e68"/></g><g transform="translate(202 211) rotate(-5)"><ellipse cy="4" rx="20" ry="9" fill="#344858" opacity=".24"/><rect x="-17" y="-14" width="8" height="13" rx="3" fill="#45545b"/><rect x="10" y="-14" width="8" height="13" rx="3" fill="#45545b"/><rect x="-17" y="7" width="8" height="12" rx="3" fill="#45545b"/><rect x="10" y="7" width="8" height="12" rx="3" fill="#45545b"/><rect x="-12" y="-17" width="25" height="35" rx="7" fill="#e3a082"/><rect x="-8" y="-9" width="17" height="15" rx="4" fill="#5e7582"/><path d="M-8 10H9" stroke="#f3c7a5" stroke-width="5"/></g><path d="m245 29 14 3m-58-8 8 2M17 25l23 4" stroke="#ddf0ef" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg><div class="race-hud"><b>01</b>POSITION</div><span class="race-lap">LAP 1 / 3</span><span class="race-caption">COASTAL CIRCUIT</span><div class="controller-badge"><svg class="icon"><use href="#i-phone"/></svg>CONCEPT PREVIEW</div></div>
+      <div class="motion-preview"><figure class="motion-shot motion-main"><img src="motionsports-kart-v1.png" width="1392" height="783" alt="MotionSports 카트의 해안 트랙 실제 게임 화면" loading="lazy" decoding="async"><figcaption>KART / UNITY GAMEPLAY</figcaption></figure><div class="motion-secondary"><figure class="motion-shot motion-tennis"><img src="motionsports-tennis-v1.png" width="600" height="500" alt="MotionSports 테니스의 선수와 코트 실제 게임 화면" loading="lazy" decoding="async"><figcaption>TENNIS / UNITY GAMEPLAY</figcaption></figure><span class="motion-preview-label mono">TENNIS + KART<br>ACTUAL UNITY SCREENS</span></div></div>
      </div>
-     <div class="project-copy"><div class="project-topline"><span class="project-number mono">PROJECT / 02</span><span class="project-category">MOTION INPUT · CONCEPT</span></div><h3>MotionSports</h3><p>손안의 움직임이 새로운 플레이가 됩니다.</p></div><span class="project-arrow"><svg class="icon"><use href="#i-arrow"/></svg></span><button class="project-open" data-open="motionsports" aria-label="MotionSports 소개와 카트 콘셉트 데모 열기"></button>
+     <div class="project-copy"><div class="project-topline"><span class="project-number mono">PROJECT / 02</span><span class="project-category">UNITY · TENNIS & KART</span></div><h3>MotionSports</h3><p>손안의 움직임이 새로운 플레이가 됩니다.</p></div><span class="project-arrow"><svg class="icon"><use href="#i-arrow"/></svg></span><button class="project-open" data-open="motionsports" aria-label="MotionSports 소개와 실제 게임 화면 열기"></button>
     </article>
 
 
    </div>
-   <p class="preview-disclaimer">Aurora는 실제 테마 화면, MotionSports는 브라우저 콘셉트 데모입니다. 카드를 눌러 자세히 볼 수 있습니다.</p>
+   <p class="preview-disclaimer">Aurora는 실제 테마 화면, MotionSports는 실제 Unity 게임 화면입니다. 카드를 눌러 자세히 볼 수 있습니다.</p>
    <div class="work-end" data-reveal><p>완벽한 시작보다, 실제로 움직이는 첫 번째 버전.</p><button class="text-link" data-contact="github">Explore on GitHub<svg class="icon"><use href="#i-arrow"/></svg></button></div>
   </div>
  </section>
@@ -316,6 +332,10 @@ html:lang(en) .hero-intro{max-width:510px}
 
   /* ───── Offline bilingual UI. No network, page reload, or animation-loop work. ───── */
   const PHRASES = {
+  "테니스와 카트의 실제 Unity 게임 화면입니다.": ["테니스와 카트의 실제 Unity 게임 화면입니다.", "Actual Unity gameplay screenshots from tennis and karting."],
+  "MotionSports 카트의 해안 트랙 실제 게임 화면": ["MotionSports 카트의 해안 트랙 실제 게임 화면", "Actual MotionSports kart gameplay on a coastal track"],
+  "MotionSports 테니스의 선수와 코트 실제 게임 화면": ["MotionSports 테니스의 선수와 코트 실제 게임 화면", "Actual MotionSports tennis gameplay showing the players and court"],
+
   "프로젝트로 바로 가기": [
     "프로젝트로 바로 가기",
     "Skip to projects"
@@ -404,9 +424,9 @@ html:lang(en) .hero-intro{max-width:510px}
     "작은 HTML 게임들을 담는 나만의 플레이 공간.",
     "A personal playground for your collection of HTML games."
   ],
-  "Aurora는 실제 테마 화면, MotionSports는 브라우저 콘셉트 데모입니다. 카드를 눌러 자세히 볼 수 있습니다.": [
-    "Aurora는 실제 테마 화면, MotionSports는 브라우저 콘셉트 데모입니다. 카드를 눌러 자세히 볼 수 있습니다.",
-    "Aurora shows actual theme screenshots; MotionSports is a browser concept demo. Select a card for details."
+  "Aurora는 실제 테마 화면, MotionSports는 실제 Unity 게임 화면입니다. 카드를 눌러 자세히 볼 수 있습니다.": [
+    "Aurora는 실제 테마 화면, MotionSports는 실제 Unity 게임 화면입니다. 카드를 눌러 자세히 볼 수 있습니다.",
+    "Aurora shows actual theme screenshots; MotionSports shows actual Unity gameplay. Select a card for details."
   ],
   "완벽한 시작보다, 실제로 움직이는 첫 번째 버전.": [
     "완벽한 시작보다, 실제로 움직이는 첫 번째 버전.",
@@ -1200,9 +1220,9 @@ html:lang(en) .hero-intro{max-width:510px}
     "Aurora Theme for Firefox 소개와 실제 화면 열기",
     "Open Aurora Theme for Firefox details and actual screenshots"
   ],
-  "MotionSports 소개와 카트 콘셉트 데모 열기": [
-    "MotionSports 소개와 카트 콘셉트 데모 열기",
-    "Open MotionSports details and the kart concept demo"
+  "MotionSports 소개와 실제 게임 화면 열기": [
+    "MotionSports 소개와 실제 게임 화면 열기",
+    "Open MotionSports details and actual gameplay screenshots"
   ],
   "macOS에서 영감을 받은 Linux용 Firefox CSS 테마입니다. 라이트·다크 스타일과 설치·복구 도구를 제공합니다. 현재 0.2.2-beta.1 베타이며 유리·블러 기능은 실험 단계입니다.": [
     "macOS에서 영감을 받은 Linux용 Firefox CSS 테마입니다. 라이트·다크 스타일과 설치·복구 도구를 제공합니다. 현재 0.2.2-beta.1 베타이며 유리·블러 기능은 실험 단계입니다.",
@@ -1216,9 +1236,9 @@ html:lang(en) .hero-intro{max-width:510px}
     "GitHub에서 보기 ↗",
     "View on GitHub ↗"
   ],
-  "휴대폰 모션 입력을 Unity 플레이에 연결하는 프로젝트입니다. 아래 카트는 입력에 반응하는 움직임을 보여 주는 브라우저 콘셉트 데모입니다.": [
-    "휴대폰 모션 입력을 Unity 플레이에 연결하는 프로젝트입니다. 아래 카트는 입력에 반응하는 움직임을 보여 주는 브라우저 콘셉트 데모입니다.",
-    "A project exploring phone motion input for Unity play. The kart below is a browser concept demo of controls and movement."
+  "휴대폰 모션 입력을 Unity 플레이에 연결하는 프로젝트입니다. 테니스와 카트의 실제 게임 화면을 소개합니다.": [
+    "휴대폰 모션 입력을 Unity 플레이에 연결하는 프로젝트입니다. 테니스와 카트의 실제 게임 화면을 소개합니다.",
+    "A project exploring phone motion input for Unity play. These are actual gameplay screenshots from tennis and karting."
   ],
   "CONCEPT PREVIEW": [
     "CONCEPT PREVIEW",
@@ -1236,9 +1256,9 @@ html:lang(en) .hero-intro{max-width:510px}
     "ACTUAL SCREENSHOTS / PUBLIC SOURCE",
     "ACTUAL SCREENSHOTS / PUBLIC SOURCE"
   ],
-  "PERSONAL PROJECT / CONCEPT PREVIEW": [
-    "PERSONAL PROJECT / CONCEPT PREVIEW",
-    "PERSONAL PROJECT / CONCEPT PREVIEW"
+  "ACTUAL SCREENSHOTS / UNITY": [
+    "ACTUAL SCREENSHOTS / UNITY",
+    "ACTUAL SCREENSHOTS / UNITY"
   ]
 };
   const translations = new Map();
@@ -1278,7 +1298,7 @@ html:lang(en) .hero-intro{max-width:510px}
     '.recipe-wordmark','.recipe-sidebar small','.recipe-nav-item','.recipe-bottom',
     '.recipe-content small','.recipe-content h4','.recipe-subline','.recipe-tag','.recipe-small',
     '.race-hud','.race-lap','.race-caption','.controller-badge','.vocab-label','.vocab-top','.vocab-footer',
-    '.game-console','.aurora-shot figcaption','.aurora-preview-label','.identity-tag','.identity-label','.focus-tags','.about-bottom',
+    '.game-console','.aurora-shot figcaption','.aurora-preview-label','.motion-shot figcaption','.motion-preview-label','.identity-tag','.identity-label','.focus-tags','.about-bottom',
     '.footer-signature','.dialog-eyebrow','.dialog-bottom>span','.study-summary h3',
     '.recipe-demo-nav h3','.recipe-demo-content h4','.player-toolbar>b'
   ].join(',');
@@ -1304,11 +1324,11 @@ html:lang(en) .hero-intro{max-width:510px}
       if(current!==rendered)node.nodeValue=rendered;
       record.rendered=rendered;localizedNodes.set(node,record);
     }
-    const elements=[...(scope.nodeType===1?[scope]:[]),...scope.querySelectorAll('[aria-label],[title],[placeholder]')];
+    const elements=[...(scope.nodeType===1?[scope]:[]),...scope.querySelectorAll('[aria-label],[title],[placeholder],.motion-shot img[alt]')];
     for(const el of elements){
       if(el.closest('[data-no-i18n]'))continue;
       let records=localizedAttributes.get(el);if(!records){records={};localizedAttributes.set(el,records)}
-      for(const name of ['aria-label','title','placeholder']){
+      for(const name of ['aria-label','title','placeholder',...(el.matches('.motion-shot img')?['alt']:[])]){
         if(!el.hasAttribute(name))continue;
         const current=el.getAttribute(name);let rec=records[name];
         if(!rec||current!==rec.rendered)rec={source:current,rendered:current};
@@ -1808,7 +1828,7 @@ html:lang(en) .hero-intro{max-width:510px}
   $$('.process-toggle').forEach(b=>b.addEventListener('click',()=>{const item=b.closest('.process-item'),open=!item.classList.contains('is-open');item.classList.toggle('is-open',open);b.setAttribute('aria-expanded',String(open));$('#'+b.getAttribute('aria-controls')).inert=!open;needsMeasure=true;requestTick()}));
   // Fine-pointer tilt only. Touch scrolling stays native; there are no wheel/touchmove traps.
   $$('.project-card').forEach((c,index)=>{
-    c.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse'||reduced||!motionOn)return;activeTilt={card:c,art:$('.stage-art',c),rect:c.getBoundingClientRect(),x:0,y:0,tx:0,ty:0,angle:[-3,2,-3,2][index]};c.classList.add('is-tilting');requestTick()});
+    c.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse'||reduced||!motionOn||c.hasAttribute('data-static-preview'))return;activeTilt={card:c,art:$('.stage-art',c),rect:c.getBoundingClientRect(),x:0,y:0,tx:0,ty:0,angle:[-3,2,-3,2][index]};c.classList.add('is-tilting');requestTick()});
     c.addEventListener('pointermove',e=>{if(activeTilt?.card!==c)return;const r=activeTilt.rect;activeTilt.tx=((e.clientX-r.left)/r.width-.5)*9;activeTilt.ty=-((e.clientY-r.top)/r.height-.5)*7;});
     const stop=()=>{if(activeTilt?.card===c){activeTilt.art.style.removeProperty('transform');c.classList.remove('is-tilting');activeTilt=null}};c.addEventListener('pointerleave',stop);c.addEventListener('pointercancel',stop);
   });
@@ -1832,7 +1852,7 @@ html:lang(en) .hero-intro{max-width:510px}
   /* ───── Modal lifecycle and safe, explicit external links ───── */
   const info={
     aurora:{name:'Aurora Theme for Firefox',label:'01 / FIREFOX THEME',status:'PUBLIC SOURCE · BETA',description:'macOS에서 영감을 받은 Linux용 Firefox CSS 테마입니다. 라이트·다크 스타일과 설치·복구 도구를 제공합니다. 현재 0.2.2-beta.1 베타이며 유리·블러 기능은 실험 단계입니다.'},
-    motionsports:{name:'MotionSports',label:'02 / MOTION & PLAY',status:'CONCEPT PREVIEW',description:'휴대폰 모션 입력을 Unity 플레이에 연결하는 프로젝트입니다. 아래 카트는 입력에 반응하는 움직임을 보여 주는 브라우저 콘셉트 데모입니다.'}
+    motionsports:{name:'MotionSports',label:'02 / MOTION & PLAY',status:'UNITY GAMEPLAY',description:'휴대폰 모션 입력을 Unity 플레이에 연결하는 프로젝트입니다. 테니스와 카트의 실제 게임 화면을 소개합니다.'}
   };
   function safeURL(value){try{const u=new URL(value);return /^https?:$/.test(u.protocol)?u.href:''}catch(_){return ''}}
   function githubURL(){const configured=safeURL(SITE_CONFIG.github);if(configured)return configured;const m=location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);return m?'https://github.com/'+m[1]:''}
@@ -1850,12 +1870,12 @@ html:lang(en) .hero-intro{max-width:510px}
     openDialog(data.name,tr(data.label,'en')+' · '+tr(data.status,'en'));
     const p=document.createElement('p');p.className='dialog-description';p.textContent=data.description;dialogBody.append(p);
     const mount=document.createElement('div');dialogBody.append(mount);
-    demo=({aurora:mountAurora,motionsports:mountRace})[id](mount);
+    demo=({aurora:mountAurora,motionsports:mountMotionScreens})[id](mount);
     const note=document.createElement('p');note.className='demo-note';
-    note.textContent=id==='motionsports'?'브라우저용 인터랙션 콘셉트입니다. 실제 Unity 빌드나 휴대폰 컨트롤러 연결이 아닙니다.':'공개 저장소의 실제 라이트·다크 툴바 캡처입니다. Firefox 버전과 실행 환경에 따라 호환성이 달라질 수 있습니다.';
+    note.textContent=id==='motionsports'?'테니스와 카트의 실제 Unity 게임 화면입니다.':'공개 저장소의 실제 라이트·다크 툴바 캡처입니다. Firefox 버전과 실행 환경에 따라 호환성이 달라질 수 있습니다.';
     dialogBody.append(note);
     const bottom=document.createElement('div');bottom.className='dialog-bottom';
-    const label=document.createElement('span');label.textContent=id==='aurora'?'ACTUAL SCREENSHOTS / PUBLIC SOURCE':'PERSONAL PROJECT / CONCEPT PREVIEW';bottom.append(label);
+    const label=document.createElement('span');label.textContent=id==='aurora'?'ACTUAL SCREENSHOTS / PUBLIC SOURCE':'ACTUAL SCREENSHOTS / UNITY';bottom.append(label);
     const url=safeURL(SITE_CONFIG.projects[id]?.url);
     if(url){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='GitHub에서 보기 ↗';bottom.append(a)}
     dialogBody.append(bottom);localizeTree(dialogBody);requestTick();
@@ -1874,39 +1894,14 @@ html:lang(en) .hero-intro{max-width:510px}
     $$('.stage-aurora .aurora-shot').forEach(shot=>el.append(shot.cloneNode(true)));
     return {};
   }
-  /* ───── Demo 2: a tiny arcade track; shared RAF, no background simulation. ───── */
-  function mountRace(el){
-    el.className='demo';el.innerHTML='<div class="race-demo"><canvas aria-label="해안 카트 미니 데모" role="img"></canvas><div class="race-demo-ui"><span id="race-laps">LAP 1 / 3</span><span id="race-speed">0 km/h</span></div></div><div class="race-controls"><button data-control="left" aria-label="왼쪽으로 조향">←</button><button data-control="go">가속 ↑</button><button data-control="right" aria-label="오른쪽으로 조향">→</button><button data-reset-race aria-label="레이스 초기화">↺</button></div><p class="race-helper">방향키 ↑ 가속 · ← → 차선 조절 / 터치 버튼을 길게 눌러도 움직입니다.</p>';
-    const c=$('canvas',el),g=c.getContext('2d');c.width=900;c.height=500;
-    const bg=document.createElement('canvas');bg.width=900;bg.height=500;const b=bg.getContext('2d');
-    b.fillStyle='#a5d2d6';b.fillRect(0,0,900,500);
-    for(let i=0;i<12;i++){b.strokeStyle='#d0ece944';b.lineWidth=2;b.beginPath();b.ellipse(450,250,435+i*17,222+i*14,0,0,Math.PI*2);b.stroke()}
-    const ellipse=(rx,ry,color)=>{b.fillStyle=color;b.beginPath();b.ellipse(450,250,rx,ry,0,0,Math.PI*2);b.fill()};
-    ellipse(399,222,'#e7dfc0');ellipse(384,207,'#b6ca95');ellipse(370,196,'#f5efda');ellipse(356,183,'#8fa4a9');ellipse(257,103,'#f1e8d2');ellipse(243,91,'#b8cb91');
-    b.strokeStyle='#e7eeeb';b.lineWidth=2;b.setLineDash([13,14]);b.beginPath();b.ellipse(450,250,307,144,0,0,Math.PI*2);b.stroke();b.setLineDash([]);
-    for(let y=59;y<130;y+=10)for(let x=437;x<463;x+=10){b.fillStyle=((Math.round(y/10)+Math.round(x/10))%2)?'#f7f8ee':'#788a8f';b.fillRect(x,y,10,10)}
-    const palm=(x,y,s)=>{b.save();b.translate(x,y);b.scale(s,s);b.fillStyle='#5e826c22';b.beginPath();b.ellipse(3,9,31,9,0,0,Math.PI*2);b.fill();b.strokeStyle='#aa9673';b.lineWidth=5;b.beginPath();b.moveTo(0,4);b.lineTo(4,-24);b.stroke();b.fillStyle='#6f9c6c';for(let k=0;k<5;k++){b.save();b.translate(4,-24);b.rotate(k*Math.PI*2/5);b.beginPath();b.ellipse(13,0,19,6,-.3,0,Math.PI*2);b.fill();b.restore()}b.restore()};
-    palm(346,258,1.5);palm(523,255,1.25);palm(592,287,.95);palm(197,425,.9);palm(707,78,.8);
-    b.fillStyle='#ecedcc';b.beginPath();b.ellipse(447,280,57,19,0,0,Math.PI*2);b.fill();b.fillStyle='#96beb4';b.beginPath();b.ellipse(447,276,40,12,0,0,Math.PI*2);b.fill();
-    let angle=-Math.PI/2,speed=0,lane=0,lap=1,distance=0,ui=0,finished=false;const keys={left:false,right:false,go:false};
-    function clear(){Object.keys(keys).forEach(k=>keys[k]=false);$$('[data-control]',el).forEach(b=>b.classList.remove('held'))}
-    function reset(){angle=-Math.PI/2;speed=0;lane=0;lap=1;distance=0;finished=false;$('#race-laps',el).textContent=tr('LAP 1 / 3');$('#race-speed',el).textContent='0 km/h';ui=0;clear();draw(0)}
-    $$('[data-control]',el).forEach(btn=>{const k=btn.dataset.control;btn.addEventListener('pointerdown',e=>{e.preventDefault();btn.setPointerCapture(e.pointerId);keys[k]=true;btn.classList.add('held')});const end=()=>{keys[k]=false;btn.classList.remove('held')};btn.addEventListener('pointerup',end);btn.addEventListener('pointercancel',end);btn.addEventListener('lostpointercapture',end)});
-    $('[data-reset-race]',el).addEventListener('click',reset);
-    const map={ArrowUp:'go',w:'go',W:'go',ArrowLeft:'left',a:'left',A:'left',ArrowRight:'right',d:'right',D:'right'};
-    const key=e=>{if(map[e.key]&&dialog.open){e.preventDefault();const k=map[e.key];keys[k]=e.type==='keydown';$(`[data-control="${k}"]`,el).classList.toggle('held',keys[k])}};
-    document.addEventListener('keydown',key);document.addEventListener('keyup',key);
-    function draw(dt){
-      speed=damp(speed,keys.go&&!finished?1:0,keys.go?1.1:1.5,dt);
-      if(keys.left)lane=Math.max(-25,lane-dt*45);if(keys.right)lane=Math.min(25,lane+dt*45);
-      const step=dt*speed*.96;angle+=step;distance+=step;lap=Math.min(3,1+Math.floor(distance/(Math.PI*2)));
-      if(distance>=Math.PI*6&&!finished){finished=true;clear();$('#race-laps',el).textContent=tr('FINISH · 다시 달려볼까요?')}
-      ui+=dt;if(ui>.1){ui=0;if(!finished)$('#race-laps',el).textContent=tr(`LAP ${lap} / 3`);$('#race-speed',el).textContent=Math.round(speed*126)+' km/h'}
-      g.drawImage(bg,0,0);for(let i=0;i<2;i++){const a=angle+.85+i*.9;drawCar(450+Math.cos(a)*309,250+Math.sin(a)*145,Math.atan2(145*Math.cos(a),-309*Math.sin(a)),i?'#b29ecd':'#ebcf90',.85)}
-      const rx=307+lane,ry=143+lane*.6;drawCar(450+Math.cos(angle)*rx,250+Math.sin(angle)*ry,Math.atan2(ry*Math.cos(angle),-rx*Math.sin(angle)),'#e59880',1);
-    }
-    function drawCar(x,y,a,color,s){g.save();g.translate(x,y);g.rotate(a+Math.PI/2);g.scale(s,s);g.fillStyle='#29465333';g.beginPath();g.ellipse(3,4,15,22,0,0,Math.PI*2);g.fill();g.fillStyle='#405660';g.fillRect(-17,-13,8,12);g.fillRect(9,-13,8,12);g.fillRect(-17,8,8,12);g.fillRect(9,8,8,12);g.fillStyle=color;g.beginPath();g.roundRect(-12,-22,24,42,7);g.fill();g.fillStyle='#66838d';g.beginPath();g.roundRect(-9,-13,18,15,4);g.fill();g.fillStyle='#f7d6b6';g.fillRect(-8,9,16,6);g.restore()}
-    draw(0);return{tick:draw,blur:clear,destroy(){clear();document.removeEventListener('keydown',key);document.removeEventListener('keyup',key)}};
+  /* MotionSports: use the exact approved images for the detail gallery. */
+  function mountMotionScreens(el){
+    el.className='motion-detail';
+    $$('.stage-motion .motion-shot').forEach(shot=>{
+      const figure=shot.cloneNode(true);figure.classList.remove('motion-main');
+      $('img',figure).loading='eager';el.append(figure);
+    });
+    return {};
   }
   /* Start immediately. No preloader or artificial delay. */
   applyLanguage(languageChoice);setupRenderer();syncSettings();requestTick();
