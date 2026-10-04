@@ -169,6 +169,36 @@ html:lang(en) .hero-intro{max-width:510px}
 .motion-detail .motion-shot figcaption{font:9px/1.7 Consolas,monospace;letter-spacing:.12em;color:var(--muted);margin:11px 1px 0}
 @media(max-width:720px){.stage-motion{padding:47px 20px 18px}.motion-detail{gap:18px}.motion-detail .motion-shot{padding:9px}}
 </style>
+<style id="neutral-glass-style">
+/* One shared neutral glass material for both project stages. */
+[data-theme="dark"] .project-card{
+ background:transparent;
+ border:1px solid rgba(180,190,212,.20);
+ border-radius:var(--radius);
+ box-shadow:0 16px 40px -29px rgba(0,0,0,.67);
+ isolation:auto;
+}
+[data-theme="dark"] .project-copy{background:#191a2a}
+[data-theme="dark"] .project-stage{
+ background:rgba(22,28,39,.64);
+ border-bottom:1px solid rgba(180,190,212,.13);
+ opacity:1;
+ -webkit-backdrop-filter:blur(9px);
+ backdrop-filter:blur(9px);
+}
+[data-theme="dark"] .stage-label,
+[data-theme="dark"] .stage-corner,
+[data-theme="dark"] .aurora-preview,
+[data-theme="dark"] .motion-preview{color:#aab4c5}
+[data-theme="dark"] .stage-grid{
+ opacity:.24;
+ background-image:linear-gradient(rgba(180,190,212,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(180,190,212,.12) 1px,transparent 1px);
+}
+[data-theme="dark"] .motion-main{border-color:rgba(180,190,212,.23)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ [data-theme="dark"] .project-stage{background:rgba(22,28,39,.85)}
+}
+</style>
 </head>
 <body>
 <!-- Reusable inline icons. -->
