@@ -199,6 +199,58 @@ html:lang(en) .hero-intro{max-width:510px}
  [data-theme="dark"] .project-stage{background:rgba(22,28,39,.85)}
 }
 </style>
+<style id="motionsports-frameless-style">
+/* MotionSports card layout; 40:27 widths preserve equal image heights
+   at the exact 16:9 and 6:5 source aspect ratios. Outer card stays untouched. */
+.stage-motion .motion-preview.motion-side-by-side{
+ width:min(100%,440px);
+ height:auto;
+ display:grid;
+ grid-template-columns:minmax(0,40fr) minmax(0,27fr);
+ grid-template-rows:auto;
+ align-items:start;
+ gap:clamp(8px,1vw,12px);
+}
+.stage-motion .motion-side-by-side .motion-shot{
+ display:block;
+ min-width:0;
+ margin:0;
+ padding:0;
+ border:0;
+ border-radius:0;
+ background:transparent;
+ box-shadow:none;
+}
+.stage-motion .motion-side-by-side .motion-shot img{
+ display:block;
+ width:100%;
+ max-width:100%;
+ height:auto;
+ min-height:0;
+ object-fit:contain;
+ border-radius:8px;
+ box-shadow:none;
+}
+.stage-motion .motion-side-by-side .motion-shot figcaption{
+ display:block;
+ margin:9px 0 0;
+ color:inherit;
+ font-size:0;
+ line-height:0;
+ font-weight:400;
+ letter-spacing:.14em;
+ text-align:center;
+}
+/* Card-only labels; the detail gallery retains its existing full captions. */
+.stage-motion .motion-side-by-side .motion-shot figcaption::after{font-size:8px;line-height:1.4;letter-spacing:.14em;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+.stage-motion .motion-side-by-side .motion-main figcaption::after{content:"KART"}
+.stage-motion .motion-side-by-side .motion-tennis figcaption::after{content:"TENNIS"}
+@media(max-width:390px){
+ .stage-motion .motion-side-by-side .motion-shot img{border-radius:6px}
+ .stage-motion .motion-side-by-side .motion-shot figcaption{margin-top:7px}
+ .stage-motion .motion-side-by-side .motion-shot figcaption::after{font-size:7px}
+}
+</style>
 </head>
 <body>
 <!-- Reusable inline icons. -->
@@ -289,7 +341,7 @@ html:lang(en) .hero-intro{max-width:510px}
     </article>
     <article class="project-card" data-category="interactive" data-static-preview data-reveal style="--delay:.08s">
      <div class="project-stage stage-motion" aria-hidden="true"><div class="stage-grid"></div><span class="stage-label mono">MOVE. PLAY. REPEAT.</span><span class="stage-corner mono">02 / PLAY</span>
-      <div class="motion-preview"><figure class="motion-shot motion-main"><img src="motionsports-kart-v1.png" width="1392" height="783" alt="MotionSports 카트의 해안 트랙 실제 게임 화면" loading="lazy" decoding="async"><figcaption>KART / UNITY GAMEPLAY</figcaption></figure><div class="motion-secondary"><figure class="motion-shot motion-tennis"><img src="motionsports-tennis-v1.png" width="600" height="500" alt="MotionSports 테니스의 선수와 코트 실제 게임 화면" loading="lazy" decoding="async"><figcaption>TENNIS / UNITY GAMEPLAY</figcaption></figure><span class="motion-preview-label mono">TENNIS + KART<br>ACTUAL UNITY SCREENS</span></div></div>
+      <div class="motion-preview motion-side-by-side"><figure class="motion-shot motion-main"><img src="motionsports-kart-v1.png" width="1392" height="783" alt="MotionSports 카트의 해안 트랙 실제 게임 화면" loading="lazy" decoding="async"><figcaption>KART / UNITY GAMEPLAY</figcaption></figure><figure class="motion-shot motion-tennis"><img src="motionsports-tennis-v1.png" width="600" height="500" alt="MotionSports 테니스의 선수와 코트 실제 게임 화면" loading="lazy" decoding="async"><figcaption>TENNIS / UNITY GAMEPLAY</figcaption></figure></div>
      </div>
      <div class="project-copy"><div class="project-topline"><span class="project-number mono">PROJECT / 02</span><span class="project-category">UNITY · TENNIS & KART</span></div><h3>MotionSports</h3><p>손안의 움직임이 새로운 플레이가 됩니다.</p></div><span class="project-arrow"><svg class="icon"><use href="#i-arrow"/></svg></span><button class="project-open" data-open="motionsports" aria-label="MotionSports 소개와 실제 게임 화면 열기"></button>
     </article>
