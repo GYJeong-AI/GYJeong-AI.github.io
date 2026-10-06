@@ -5,7 +5,7 @@
 GY.JEONG's portfolio website showcasing web, app, and game projects.
 
 - Website: [gyjeong-ai.github.io](https://gyjeong-ai.github.io/)
-- Contact: [gyjeongai@gmail.com](mailto:gyjeongai@gmail.com)
+- Contact: [Portfolio contact](https://gyjeong-ai.github.io/#contact)
 
 ## Files
 
