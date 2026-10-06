@@ -5,7 +5,7 @@
 웹·앱·게임 프로젝트를 소개하는 GY.JEONG의 포트폴리오 웹사이트입니다.
 
 - 사이트: [gyjeong-ai.github.io](https://gyjeong-ai.github.io/)
-- 문의: [gyjeongai@gmail.com](mailto:gyjeongai@gmail.com)
+- 문의: [포트폴리오 연락처](https://gyjeong-ai.github.io/#contact)
 
 ## 파일 구성
 
